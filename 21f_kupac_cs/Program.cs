@@ -98,23 +98,57 @@ namespace _21f_kupac_cs
 
 		static void Main(string[] args)
 		{
-
-
-			Kupac k = new Kupac((int a, int b) => a > b);
-
-			for (int i = -10; i < 30; i += 2)
 			{
-				k.Push(i);
-			}
-			for (int i = -21; i < 11; i += 2)
-			{
-				k.Push(i);
+				Kupac k = new Kupac((int a, int b) => a > b);
+
+				for (int i = -10; i < 30; i += 2)
+				{
+					k.Push(i);
+				}
+				for (int i = -21; i < 11; i += 2)
+				{
+					k.Push(i);
+				}
+
+				while (k.Count != 0)
+				{
+					Console.WriteLine(k.Pop());
+				}
 			}
 
-			while (k.Count!=0)
+			int N = int.Parse(Console.ReadLine());
+
+			List<int[]> m = new List<int[]>();
+			for (int i = 0; i < N; i++)
 			{
-				Console.WriteLine(k.Pop());
+				m.Add(Console.ReadLine().Split(' ').Select(int.Parse).ToArray());
 			}
+
+
+
+			Dijkstra(m, 0);
+
+		}
+
+		private static void Dijkstra(List<int[]> m, int v)
+		{
+			int N = m.Count;
+			int[] shortest_distance_from_A = new int[N];
+			for (int i = 0; i < N; i++)
+			{
+				shortest_distance_from_A[i] = int.MaxValue;
+			}
+			shortest_distance_from_A[0] = 0;
+
+			Kupac kupac = new Kupac((d, b) => shortest_distance_from_A[d] < shortest_distance_from_A[b]);
+
+			int[] previous_vertex = new int[N];
+			for (int i = 0; i < N; i++)
+			{
+				previous_vertex[i] = -2;
+			}
+
+			// itt jönne az algoritmus
 
 		}
 	}
